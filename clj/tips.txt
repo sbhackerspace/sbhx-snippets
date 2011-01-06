@@ -1,0 +1,2 @@
+Want a list of all clojure.core functions that return a boolean?
+$ grep '?' clojure-core-functions.txt
