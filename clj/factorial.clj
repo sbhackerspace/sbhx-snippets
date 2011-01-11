@@ -16,6 +16,7 @@
 
 
 (defn fact3 [n]
-  (reduce * (range 1 (inc n))))
+  (reduce *
+		  (range 1 (inc n))))
 
 (println "(fact3 5) =>" (fact3 5))

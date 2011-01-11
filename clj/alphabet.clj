@@ -8,14 +8,24 @@
 
 ; Uppercase
 (println
- (map char (range (int \A) (inc (int \Z)))))
+ (map char
+	  (range (int \A)
+			 (inc (int \Z)))))
 
 ; Lowercase
 (println
- (take 26 (map char (iterate inc (int \a)))))
+ (take 26
+	   (map char
+			(iterate inc
+					 (int \a)))))
 
 ; Uppercase and lowercase
 (println
- (map char (concat
-			(range (int \A) (inc (int \Z)))
-			(take 26 (map char (iterate inc (int \a)))))))
+ (map char
+	  (concat
+	   (range (int \A)
+			  (inc (int \Z)))
+	   (take 26
+			 (map char
+				  (iterate inc
+						   (int \a)))))))

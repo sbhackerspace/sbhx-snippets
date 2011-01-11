@@ -3,7 +3,9 @@
 
 ; Using fn
 (println
- (filter (fn [x] (> x 3)) (range -10 5)))
+ (filter
+  (fn [x] (> x 3))
+  (range -10 5)))
 ; (4)
 
 ; Short-cut
