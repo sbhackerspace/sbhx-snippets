@@ -4,5 +4,9 @@
 
 import sys
 
-for arg in sys.argv[1:]:
+for arg in sys.argv:
     print arg,
+print "\n"
+
+print "Found", len(sys.argv), "args"
+print "sys.argv[0] ==", sys.argv[0]
