@@ -19,3 +19,11 @@
 		  (list x))))
 
 (println (compnth 5 #(+ 10 %) 0))
+
+
+;; 2011.01.20
+;; No need for comp-nth/compnth/nth-comp -- use _iterate_ instead
+(defn nth-comp [n f x]
+  (nth (iterate f x) n))
+
+(println (nth-comp 5 #(+ 10 %) 0))
