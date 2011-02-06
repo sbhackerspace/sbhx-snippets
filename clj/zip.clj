@@ -40,6 +40,9 @@
 
 (-> my-vzip next right node)
 ; [2 8]
+;; Without ->, this would look like
+;(node (right (next my-vzip)))
+
 
 (-> my-vzip next right down node)
 ; 2
