@@ -11,6 +11,7 @@ func generator() func() int {
 func main() {
 	g := generator()
 	for i := 0; i < 10; i++ {
-		println(g())
+		print(g(), " ")
 	}
+	println()
 }
