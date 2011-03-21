@@ -9,6 +9,7 @@ SLEEP_SECONDS = 10
 repo_names = ['sbhx-ircbot', 'sbhx-rov', 'sbhx-sicp', 'sbhx-snippets',
               #'sbhx-androidapp',
               #'sbhx-projecteuler'
+              ## These two don't get parsed correctly for some reason...
               ]
 
 def main():
@@ -23,14 +24,13 @@ def main():
                 last_updated[repo] = d.feed.updated
                 continue
             elif last_updated[repo] != d.feed.updated:
-                print d.entries[0].author.split[0], "committed to", repo
+                print d.entries[0].author.split()[0], "committed to", repo
                 print "   ", d.entries[0].title
+                print
             else:
                 pass
                 #print repo + ":\t Nothing new"
 
-        print last_updated
-        print
         time.sleep(SLEEP_SECONDS)
 
 if __name__ == '__main__':
