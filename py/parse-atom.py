@@ -4,11 +4,10 @@
 
 import feedparser, time
 
-SLEEP_SECONDS = 2
+SLEEP_SECONDS = 1
 
 repo_names = ['sbhx-ircbot', 'sbhx-rov', 'sbhx-sicp', 'sbhx-snippets',
-              #'sbhx-androidapp',
-              #'sbhx-projecteuler'
+              #'sbhx-androidapp', 'sbhx-projecteuler'
               ## These two don't get parsed correctly for some reason...
               ]
 
@@ -18,7 +17,7 @@ def main():
         for repo in repo_names:
             old = feedparser.parse('https://github.com/sbhackerspace/' + \
                                        repo + '/commits/master.atom')
-            time.sleep(SLEEP_SECONDS)
+            time.sleep(SLEEP_SECONDS)  # Wait then compare
             d = feedparser.parse('https://github.com/sbhackerspace/' + \
                                          repo + '/commits/master.atom')
 
