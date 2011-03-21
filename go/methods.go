@@ -4,17 +4,17 @@
 package main
 
 import (
-	"fmt"
+    "fmt"
 )
 
-type MyFloat float64
+type int int64
 
-func (n MyFloat) Square() float64 {
-	x := float64(n)
-	return x * x
+func (n int) Square() float64 {
+    x := float64(n)
+    return x * x
 }
 
 func main() {
-	var n MyFloat = 4
-	fmt.Printf("%.2f\n", n.Square())
+    var n int = 4  // "int" refers to my custom type!
+    fmt.Printf("%.2f\n", n.Square())
 }
