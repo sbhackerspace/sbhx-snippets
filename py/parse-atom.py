@@ -2,9 +2,9 @@
 # Steve Phillips / elimisteve
 # 2011.03.20
 
-import commands, feedparser, re, time
+import feedparser, time
 
-SLEEP_SECONDS = 10
+SLEEP_SECONDS = 2
 
 repo_names = ['sbhx-ircbot', 'sbhx-rov', 'sbhx-sicp', 'sbhx-snippets',
               #'sbhx-androidapp',
@@ -16,22 +16,16 @@ def main():
     last_updated = {}
     while True:
         for repo in repo_names:
-             # Download and parse feed
+            old = feedparser.parse('https://github.com/sbhackerspace/' + \
+                                       repo + '/commits/master.atom')
+            time.sleep(SLEEP_SECONDS)
             d = feedparser.parse('https://github.com/sbhackerspace/' + \
-                                     repo + '/commits/master.atom')
+                                         repo + '/commits/master.atom')
 
-            if not repo in last_updated:  # first run
-                last_updated[repo] = d.feed.updated
-                continue
-            elif last_updated[repo] != d.feed.updated:
+            if d.entries[0] != old.entries[0]:
                 print d.entries[0].author.split()[0], "committed to", repo
                 print "   ", d.entries[0].title
                 print
-            else:
-                pass
-                #print repo + ":\t Nothing new"
-
-        time.sleep(SLEEP_SECONDS)
 
 if __name__ == '__main__':
     main()
