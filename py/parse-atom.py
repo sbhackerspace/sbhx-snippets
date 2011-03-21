@@ -6,10 +6,11 @@ import feedparser, time
 
 account_name = 'sbhackerspace'
 branch = 'master'
-repo_names = ['sbhx-ircbot', 'sbhx-rov', 'sbhx-sicp', 'sbhx-snippets',
+repo_names = ['sbhx-snippets']
+              #'sbhx-ircbot', 'sbhx-rov', 'sbhx-sicp',
               #'sbhx-androidapp', 'sbhx-projecteuler'
               ## These two don't get parsed correctly for some reason...
-              ]
+              #]
 SLEEP_SECONDS = float(60*2)/len(repo_names)  # Check each repo once/2 minutes
 
 def main():
