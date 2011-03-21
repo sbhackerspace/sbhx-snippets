@@ -25,7 +25,7 @@ def main():
                                    '/' + repo + '/commits/' + branch + '.atom')
 
             if d.entries[0] != old.entries[0]:
-                #author = d.entries[0].author.split()[0]  # first name
+                #author = d.entries[0].author.split()[0]  # First name
                 author = d.entries[0].author_detail.href.split('/')[-1]
                 commit_msg = d.entries[0].title
                 print author, "committed to", repo
