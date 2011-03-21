@@ -13,15 +13,15 @@ repo_names = ['sbhx-ircbot', 'sbhx-rov', 'sbhx-sicp', 'sbhx-snippets',
 
 def main():
     last_updated = {}
-    for repo in repo_names:
-         # Download and parse feed
-        d = feedparser.parse('https://github.com/sbhackerspace/' + repo + '/commits/master.atom')
-        print repo, '\t Last updated', d.feed.updated #d['feed']['updated']
-
     while True:
         for repo in repo_names:
+             # Download and parse feed
+            d = feedparser.parse('https://github.com/sbhackerspace/' + \
+                                     repo + '/commits/master.atom')
+
             if not repo in last_updated:  # first run
                 last_updated[repo] = d.feed.updated
+                continue
             elif last_updated[repo] != d.feed.updated:
                 print d.entries[0].author.split[0], "committed to", repo
                 print "   ", d.entries[0].title
@@ -29,6 +29,8 @@ def main():
                 pass
                 #print repo + ":\t Nothing new"
 
+        print last_updated
+        print
         time.sleep(SLEEP_SECONDS)
 
 if __name__ == '__main__':
