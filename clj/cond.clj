@@ -5,3 +5,5 @@
    (> x 0) (println "Positive")))
 
 (many-ifs 5)
+(many-ifs 0)
+(many-ifs -3)
