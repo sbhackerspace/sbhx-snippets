@@ -35,3 +35,6 @@
 (do (println (* 3 5))
     (println "Hello"))
 
+(defn hello
+  "This function says hello!"
+  [] (println "Hello there!"))
