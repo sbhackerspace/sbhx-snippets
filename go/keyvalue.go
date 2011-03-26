@@ -4,7 +4,7 @@
 package main
 
 import (
-	"fmt"
+    "fmt"
 )
 
 func main() {
@@ -26,5 +26,4 @@ func main() {
     for k, v := range my_string {
         fmt.Printf("%s is at %d\n", string(v), k)
     }
-
 }

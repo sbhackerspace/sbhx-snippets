@@ -2,7 +2,7 @@
 ; 2011.03.26
 
 (defn generator
-  ([](def num 0)
+  ([] (def num 0)
      (fn []
        (def num (inc num))
        num))
@@ -10,9 +10,14 @@
      (fn []
        (def num (inc num))
        num)))
-;;usage
-(def g (generator))
 
-(g)
-(g)
-(g)
+;; Usage
+(def g1 (generator))
+(g1)  ; 1
+(g1)  ; 2
+(g1)  ; 3
+
+(def g2 (generator 10))
+(g2)  ; 11
+(g2)  ; 12
+(g2)  ; 13
