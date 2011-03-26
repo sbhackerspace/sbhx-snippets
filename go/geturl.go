@@ -10,7 +10,8 @@ import (
 )
 
 func main() {
-	url := "http://decentra.org/md5/string/hash-this-string"
+	//url := "http://decentra.org/md5/string/hash-this-string"
+    url := "http://steveswebapps.com/decentra/md5/string/hash-this-string"
 	req, _, err := http.Get(url)  // _ = final URL retrieved
 	                              // (after redirects)
 	if err == nil {
