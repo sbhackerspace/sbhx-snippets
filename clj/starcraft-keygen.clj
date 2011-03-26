@@ -6,7 +6,7 @@
    largest possible int from 0 to (n-1), length of vector."
   [max length]
   (loop [i 0, v []]
-    (if (> i length)
+    (if (> i (dec length))
       v
       (recur (inc i)
              (assoc v i (rand-int max))))))
