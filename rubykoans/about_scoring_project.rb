@@ -38,13 +38,13 @@ def score(dice)
     if (1..2).include? how_many
       sum += 100 * how_many if first == 1
       sum += 50  * how_many if first == 5
-      for cnt in 1..how_many
+      for _ in 1..how_many
         dice.delete_at(dice.index(first))
       end
-    else  # 3 or more occurrences of first
+    else  # 3 or more occurrences of dice.first
       sum += 1000 if first == 1
       sum += 100 * first if (2..6).include? first
-      for cnt in 1..3  # delete 3 instances of dice.first
+      for _ in 1..3  # delete 3 instances of dice.first
         dice.delete_at(dice.index(first))
       end
     end
