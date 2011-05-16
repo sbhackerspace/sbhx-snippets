@@ -1,0 +1,14 @@
+<notes>
+  <note>
+    <from>Go</from>
+    <to>JavaScript</to>
+    <heading>Reminder</heading>
+    <body>I'm better than you.</body>
+  </note>
+  <note>
+    <from>JavaScript</from>
+    <to>Go</to>
+    <heading>Oh really?</heading>
+    <body>I'm more popular.</body>
+  </note>
+</notes>

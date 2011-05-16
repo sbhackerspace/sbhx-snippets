@@ -3,29 +3,24 @@
 
 package main
 
-import (
-    "fmt"
-)
-
+// sum takes a slice of ints and returns their sum
 func sum(nums []int) (total int) {
     for _, n := range nums {
         total += n
     }
-    return
+    return // Notice the named return value, 'total'
 }
 
 type MySlice []int
 
-func (s MySlice) Sum() (total int) {
+// Adds the Sum() method to MySlice, which has a base type of []int
+func (s MySlice) Sum() int {
     slice := []int(s)
-    for _, n := range slice {
-        total += n
-    }
-    return
+    return sum(slice)
 }
 
 func main() {
     intSlice := []int{1,2,3}
-    fmt.Printf("%d\n", sum(intSlice))
-    fmt.Printf("%d\n", MySlice(intSlice).Sum())
+    println(sum(intSlice))
+    println(MySlice(intSlice).Sum())
 }
