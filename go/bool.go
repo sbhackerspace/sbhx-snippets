@@ -5,12 +5,11 @@ package main
 
 import (
     "fmt"
+    "strconv"
 )
 
 func main() {
-    var x float32 = 5
-
-    if bool(x) {
+    if five_as_bool := strconv.Itob(5); five_as_bool {
         fmt.Printf("True\n")
     } else {
         fmt.Printf("False\n")

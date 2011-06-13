@@ -16,7 +16,6 @@ KEY_LENGTH = 6
 
 dev = Device(mode='b')
 dev.baudrate = 9600
-
 while True:
     string = dev.read(KEY_LENGTH).strip()
     old_string = '' # Not yet used to compare string and old_string

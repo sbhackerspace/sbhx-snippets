@@ -15,9 +15,9 @@ func main() {
 	req, _, err := http.Get(url)  // _ = final URL retrieved
 	                              // (after redirects)
 	if err == nil {
-		body, _ := ioutil.ReadAll(req.Body);
+		body, _ := ioutil.ReadAll(req.Body)
 		fmt.Printf("%s\n", body)
-		req.Body.Close();
+		req.Body.Close()
 	} else {
 		fmt.Printf("err: %s\n", err)
 	}
