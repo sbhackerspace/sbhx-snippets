@@ -22,6 +22,7 @@ def main():
                 '/' + repo + '/commits/' + branch + '.atom'
                 )
 
+        print "Sleeping for", SLEEP_SECONDS, "seconds"
         time.sleep(SLEEP_SECONDS)  # Wait then compare
 
         for repo in repo_names:
@@ -35,6 +36,13 @@ def main():
                 print author, "committed to", repo
                 print "   ", commit_msg
                 print
+            else:
+                print "No change"
+                author = new.entries[0].author_detail.href.split('/')[-1]
+                commit_msg = new.entries[0].title
+                print author, "committed to", repo
+                print "   ", commit_msg
+
 
 if __name__ == '__main__':
     main()
