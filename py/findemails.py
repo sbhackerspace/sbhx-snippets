@@ -13,8 +13,7 @@ if len(sys.argv) < 2:
 contents = ' '.join([ open(x, 'r').read() for x in sys.argv[1:] ])
 
 emails = []
-for email in re.findall(r'[\w\-+][\w\-+.]+@[\w\-][\w\-.]+[a-zA-Z]{1,4}',
-                        contents, re.DOTALL):
+for email in re.findall(r'[\w\-+.]+@[\w\-][\w\-.]+[a-zA-Z]{1,4}', contents):
     emails.append(email)
     #print email
 
