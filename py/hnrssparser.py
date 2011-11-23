@@ -6,9 +6,7 @@ urll = "http://news.ycombinator.com/rss"
 ycomb = feedparser.parse(urll)
 
 # A list of commonwords to rule out. Will use this later in the code.
-commonwords = ['all', 'go', 'its', 'had', 'day', 'to', 'has', 'do', 'them', 'his', 'get', 'they', 'not', 'now', 
-'him', 'like', 'did', 'these', 'she', 'each', 'people', 'some', 'see', 'are', 'out', 'what', 'said', 'for', 'find', 'may', 'be', 'we', 'were', 'water', 'come', 'by', 'on', 'about', 'her', 'of', 'could', 'or', 'first', 'into', 'number', 'one', 'down', 'long', 'your', 'use', 'from', 'would', 'there', 'two', 'been', 'their', 'call', 'way', 'was', 'more', 'that', 'but', 'part', 'with', 'than', 'he', 'made', 'word', 'look', 'this', 'up', 'will', 'can', 'many', 'my', 'and', 'then', 'is', 'it', 'an', 'as', 'at', 'have', 'in', 'if', 'no', 'make', 'when', 'write', 'how', 'other', 'which', 'you', 'oil', 'I', 'who', 'a', 'so', 'time', 'the', 'All', 'Go', 'Its', 'Had', 'Day', 'To', 'Has', 'Do', 'Them', 'His', 'Get', 'They', 'Not', 'Now', 'Him', 'Like', 'Did', 'These', 'She', 'Each', 'People', 'Some', 'See', 'Are', 'Out', 'What', 'Said', 'For', 'Find', 'May', 'Be', 'We', 'Were', 'Water', 'Come', 'By', 'On', 'About', 'Her', 'Of', 'Could', 'Or', 'First', 'Into', 'Number', 'One', 'Down', 'Long', 'Your', 'Use', 'From', 'Would', 'There', 'Two', 'Been', 'Their', 'Call', 'Way', 'Was', 'More', 'That', 'But', 'Part', 'With', 'Than', 'He', 'Made', 'Word', 'Look', 'This', 'Up', 'Will', 'Can', 'Many', 'My', 'And', 'Then', 'Is', 'It', 'An', 'As', 'At', 'Have', 'In', 'If', 'No', 'Make', 'When', 'Write', 'How', 'Other',
-'Which', 'You', 'Oil', 'I', 'Who', 'A', 'So', 'Time', 'The', "You'll","you'll", 'our', 'Our', "can't", "Can't", "&", "am", 'Am', "Give", 'give', 'Back', "back", "Why", "why", 'only', 'Only', 'Too', 'too']
+commonwords = ['all', 'go', 'its', 'had', 'day', 'to', 'has', 'do', 'them', 'his', 'get', 'they', 'not', 'now', 'him', 'like', 'did', 'these', 'she', 'each', 'people', 'some', 'see', 'are', 'out', 'what', 'said', 'for', 'find', 'may', 'be', 'we', 'were', 'water', 'come', 'by', 'on', 'about', 'her', 'of', 'could', 'or', 'first', 'into', 'number', 'one', 'down', 'long', 'your', 'use', 'from', 'would', 'there', 'two', 'been', 'their', 'call', 'way', 'was', 'more', 'that', 'but', 'part', 'with', 'than', 'he', 'made', 'word', 'look', 'this', 'up', 'will', 'can', 'many', 'my', 'and', 'then', 'is', 'it', 'an', 'as', 'at', 'have', 'in', 'if', 'no', 'make', 'when', 'write', 'how', 'other', 'which', 'you', 'oil', 'I', 'who', 'a', 'so', 'time', 'the', "you'll", 'our', "can't", "&", "am", 'give', "back", "why", 'only', 'too']
 
 
 ycli = []
@@ -36,10 +34,7 @@ for title in ycombtitles:
 
 
 #This deletes each word in the list that is in the 'commonwords' list at the beginning.
-for commonword in commonwords:
-    while commonword in hntitlessplit:
-        hntitlessplit.remove(commonword)
-
+hntitlessplit = [x for x in hntitlessplit if x.lower() not in commonwords]
 
 print '\n\n'    
 print hntitlessplit
