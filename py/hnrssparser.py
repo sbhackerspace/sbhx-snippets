@@ -48,8 +48,10 @@ print '\n\n'
 print ', '.join(hn_title_words)
 print '\n\n'
 
-word_counter = collections.counter(hn_title_words)
+word_counter = collections.Counter(hn_title_words)
 
-for word in word_counter:
-	print word_counter[word], word
-print word_counter['foobar']
+word_counts = [(count, word) for (word, count) in word_counter.iteritems()]
+word_counts.sort()
+
+for (count, word) in word_counts:
+	print count, word
