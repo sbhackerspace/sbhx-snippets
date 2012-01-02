@@ -11,9 +11,8 @@ import (
 
 func main() {
 	//url := "http://decentra.org/md5/string/hash-this-string"
-    url := "http://steveswebapps.com/decentra/md5/string/hash-this-string"
-	req, _, err := http.Get(url)  // _ = final URL retrieved
-	                              // (after redirects)
+	url := "http://steveswebapps.com/decentra/md5/string/hash-this-string"
+	req, err := http.Get(url)
 	if err == nil {
 		body, _ := ioutil.ReadAll(req.Body)
 		fmt.Printf("%s\n", body)
