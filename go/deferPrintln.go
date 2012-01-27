@@ -5,7 +5,7 @@ package main
 
 func main() {
 	s := ""
-	defer println(s)                 // Doesn't work
-	//defer func() { println(s) }()  // Works
+	//defer println(s)             // Doesn't work
+	defer func() { println(s) }()  // Works
 	s += "Seems like the output shouldn't be blank, but it is!"
 }
