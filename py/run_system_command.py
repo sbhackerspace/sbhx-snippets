@@ -7,7 +7,7 @@ import commands
 cmd = 'ls'
 status, output = commands.getstatusoutput(cmd)
 
-if not status: # status == 0 when no error returned
+if status:
+    print "Error:", output
+else: # status == 0 when no error returned
     print output
-else:
-    print "Error:", status
