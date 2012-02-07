@@ -11,7 +11,8 @@ type IntSlice []int
 
 func main() {
 	//
-	// The following is completely wrong. See type-assertions-interfaces.go
+	// The following is completely wrong. See
+	// type-assertions-interfaces.go or type-assertions-typeswitch.go
 	//
 
 	slice := IntSlice{1, 2, 3}
