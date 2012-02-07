@@ -14,7 +14,7 @@ func main() {
 	// Send numbers 0 through NUM_LOOPS-1 to channel `signal`
 	go func() {
 		for i := 0; i < NUM_LOOPS; i++ {
-			signal <- i + 1
+			signal <- i+1
 		}
 	}()
 
