@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"launchpad.net/mgo"
 	"launchpad.net/mgo/bson"
-	"os"
 	"time"
 )
 
@@ -30,15 +29,15 @@ func main() {
 	session, err := mgo.Dial("localhost")
 	if err != nil {
 		fmt.Printf("Install MongoDB then try again!\n")
-		os.Exit(1)
+		return
 	}
 	defer session.Close()
 	session.SetMode(mgo.Monotonic, true)
 
 	// Create new *Sbitter objects for elimisteve and swiss
 	now := time.Now()
-	elimisteve := &Sbitter{"elimisteve", "password", 26, now, now}
-	swiss := &Sbitter{"swiss", "password", 23, now, now}
+	elimisteve := &Sbitter{"elimisteve", "ilovego!!", 26, now, now}
+	swiss := &Sbitter{"swiss", "bananapantsftw", 23, now, now}
 
 	// Save both to the collection of "sbitters" in database "sbitter"
 	c := session.DB("sbitter").C("sbitters")
