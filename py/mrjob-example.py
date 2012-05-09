@@ -1,5 +1,11 @@
 # From https://github.com/Yelp/mrjob
 
+# After you've run
+#    sudo pip install mrjob
+# run this:
+#     python ~/sbhx/sbhx-snippets/py/mrjob-example.py ~/.bashrc -r emr > counts.txt
+# to run WordCount on your .bashrc file and redirect the results into 'counts.txt'
+
 """The classic MapReduce job: count the frequency of words.
 """
 from mrjob.job import MRJob
