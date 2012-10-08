@@ -11,13 +11,18 @@ import (
 	"strings"
 )
 
+const (
+	GMAIL_ADDRESS  = ""
+	GMAIL_PASSWORD = ""
+)
+
 // Struct singleton -- w00t!
 var cfg = struct {
 	Server, Username, Password string
 }{
 	Server:   "talk.google.com:443",
-	Username: "YOURUSERNAME@gmail.com",
-	Password: "YOURPASSWORD",
+	Username: GMAIL_ADDRESS,
+	Password: GMAIL_PASSWORD,
 }
 
 func main() {
