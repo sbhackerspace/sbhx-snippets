@@ -11,23 +11,23 @@ func intDoubler(ch chan int, n int) {
 }
 
 func main() {
-	// Make a channel of ch
+	// Make channel of ints
 	ch := make(chan int)
 	answer := make(chan string)
 
 	// Spawn 3 goroutines (basically threads) to process data in background
 	go intDoubler(ch, 10)
 	go intDoubler(ch, 20)
-	go func(a, b int) { ch <- a+b }(30, 40) // Take 2 ints; Write sum to `ch`
+	go func(a, b int) { ch <- a+b }(30, 40) // Take 2 ints, write sum to `ch`
 
 	// Create anonymous function on the fly, launch as goroutine!
 	go func() {
 		// Save the 3 values passed through the channel as x, y, and z
 		x, y, z := <-ch, <-ch, <-ch
-		// Create answer; write to `answer` channel
+		// Calculate answer, write to `answer` channel
 		answer <- fmt.Sprintf("%d + %d + %d = %d", x, y, z, x+y+z)
 	}()
 
-	// Print answer from channel
+	// Print answer resulting from channel read
 	fmt.Printf("%s\n", <-answer)
 }
