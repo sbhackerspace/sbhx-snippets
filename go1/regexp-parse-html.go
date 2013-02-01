@@ -16,4 +16,5 @@ func main() {
 	for _, c := range getComment.FindAllStringSubmatch(html, -1) {
 		fmt.Printf("%v\n", c[1])
 	}
+	// Output: 'Some comment' and 'Another one'
 }
