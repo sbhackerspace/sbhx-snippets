@@ -13,9 +13,9 @@ import (
 )
 
 type SiteScrape struct {
-	URL       string     // Website URL
-	Contents  []byte     // Page contents
-	Timestamp time.Time  // Seconds elapsed since Unix epoch
+	URL       string
+	Contents  []byte
+	Timestamp time.Time
 }
 
 func main() {
@@ -74,8 +74,8 @@ func scrape(url string, results chan *SiteScrape) {
 
 	// Define new struct
 	site = &SiteScrape{
-		URL: url,
-		Contents: contents,
+		URL:       url,
+		Contents:  contents,
 		Timestamp: time.Now(),
 	}
 
