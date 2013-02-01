@@ -1,5 +1,6 @@
 // Steve Phillips / elimisteve
-// 2011.01.16
+// First pushed 2011.01.16
+// Rewritten    2013.02.01
 
 package main
 
@@ -25,44 +26,35 @@ func main() {
 		"reddit.com",
 		"delicious.com",
 	}
-	scrapes := make(chan *SiteScrape)
-	sites := []*SiteScrape{}
+	sites := make(chan *SiteScrape)
 
 	// Non-blocking scraping! Wallpaper download starts first, finishes last
-	fmt.Printf(" * Parallelized scraper started...\n")
 	for _, url := range urlList {
-		go scrape(url, scrapes)
+		fmt.Printf("Scraping %s...\n", url)
+		go scrape(url, sites)
 	}
 
-	// Collect results from scraping 
-	fmt.Printf("\n * Collecting results...\n\n")
 	for i := 0; i < len(urlList); i++ {
-		sites = append(sites, <-scrapes)
-	}
-
-	fmt.Printf("\n * Displaying results...\n")
-	for i := 0; i < len(sites); i++ {
-		maxLen := 200
-		if len(sites[i].Contents) < maxLen {
-			maxLen = len(sites[i].Contents)
+		if site := <-sites; site != nil {
+			// Display data about successful scrapes
+			fmt.Printf("Scraped %s (downloaded %d bytes at %v)\n",
+				site.URL, len(site.Contents),
+				site.Timestamp.Format(time.Kitchen))
 		}
-		fmt.Printf("\n[%v] %s\n%s\n\n", sites[i].Timestamp.Format(time.Kitchen),
-			sites[i].URL, sites[i].Contents[:maxLen])
 	}
 }
 
-// scrape scrapes the given URL and saves it to disk
+// scrape scrapes the given URL, puts its contents into a new
+// *SiteScrape, then passes it to the `results` chan
 func scrape(url string, results chan *SiteScrape) {
-	var err error
+	var site *SiteScrape
 
-	fmt.Printf("Started scraping %s...\n", url)
+	// Pass scraped site to `results` on success, pass `nil` on error
 	defer func() {
-		if err == nil {
-			fmt.Printf("Successfully scraped %s\n", url)
-		}
+		results <- site
 	}()
 
-	// Don't make the user type "http://" for every freaking URL!
+	// Don't make the user type "http://" for every URL
 	if !strings.Contains(url, "://") {
 		url = "http://" + url
 	}
@@ -81,16 +73,13 @@ func scrape(url string, results chan *SiteScrape) {
 	defer req.Body.Close()
 
 	// Define new struct
-	site := SiteScrape{
+	site = &SiteScrape{
 		URL: url,
 		Contents: contents,
 		Timestamp: time.Now(),
 	}
 
-	// Pass results to `results` channel
-	results <- &site
-
-	return
+	// See `results <- site` within defer above
 }
 
 func somethingBroke(err error) bool {
