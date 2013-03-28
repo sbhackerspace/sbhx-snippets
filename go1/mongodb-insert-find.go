@@ -5,8 +5,8 @@ package main
 
 import (
 	"fmt"
-	"launchpad.net/mgo"
-	"launchpad.net/mgo/bson"
+	"labix.org/v2/mgo"
+	"labix.org/v2/mgo/bson"
 	"time"
 )
 
