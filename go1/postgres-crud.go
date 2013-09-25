@@ -30,14 +30,6 @@ var (
 	PostgresConnStr = "user=postgres dbname=postgres host=localhost sslmode=disable password=" + os.Getenv("PGPASS")
 )
 
-type Profile struct {
-	Id        int64
-	Name      string
-	Age       int
-	CreatedAt time.Time
-	// Interests []string  // TODO
-}
-
 func main() {
 	db, err := sql.Open("postgres", PostgresConnStr)
 	if err != nil {
@@ -98,4 +90,12 @@ func maybePanic(err error) {
 	if err != nil {
 		panic(err)
 	}
+}
+
+type Profile struct {
+	Id        int64
+	Name      string
+	Age       int
+	CreatedAt time.Time
+	// Interests []string  // TODO
 }
