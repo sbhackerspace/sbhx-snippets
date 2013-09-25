@@ -99,3 +99,19 @@ type Profile struct {
 	CreatedAt time.Time
 	// Interests []string  // TODO
 }
+
+func (p *Profile) InsertFields() []interface{} {
+	return []interface{}{
+		&p.Name,
+		&p.Age,
+	}
+}
+
+func (p *Profile) AllFields() []interface{} {
+	return []interface{}{
+		&p.Id,
+		&p.Name,
+		&p.Age,
+		&p.CreatedAt,
+	}
+}
