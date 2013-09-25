@@ -44,9 +44,9 @@ func main() {
 
 
 	// Create new Profile for elimisteve and insert into DB
-	elimi := Profile{Name: "elimisteve", Age: 27, CreatedAt: time.Now()}
+	elimi := &Profile{Name: "elimisteve", Age: 27, CreatedAt: time.Now()}
 
-	_, err = db.Exec(InsertProfile, &elimi.Name, &elimi.Age)
+	_, err = db.Exec(InsertProfile, elimi.InsertFields()...)
 	maybePanic(err)
 
 
@@ -55,11 +55,11 @@ func main() {
 	maybePanic(err)
 	defer rows.Close()
 
-	var steve Profile
+	steve := &Profile{}
 	var rowNum int
 	// Iterate over all of elimisteve's profiles
 	for rows.Next() {
-		err = rows.Scan(&steve.Id, &steve.Name, &steve.Age, &steve.CreatedAt)
+		err = rows.Scan(steve.AllFields()...)
 		maybePanic(err)
 		// log.Printf("elimisteve's Profile #%d: %+v\n", rowNum, steve)
 		rowNum++
@@ -73,10 +73,9 @@ func main() {
 	maybePanic(err)
 
 
-	var newSteve Profile
+	newSteve := &Profile{}
 	// Find the profile we found last time and scan it into a new Profile
-	err = db.QueryRow(SelectProfileByID, steve.Id).Scan(&newSteve.Id,
-		&newSteve.Name, &newSteve.Age, &newSteve.CreatedAt)
+	err = db.QueryRow(SelectProfileByID, steve.Id).Scan(newSteve.AllFields()...)
 	maybePanic(err)
 	log.Printf("elimisteve's updated Profile: %+v\n", newSteve)
 
