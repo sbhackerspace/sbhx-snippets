@@ -8,6 +8,7 @@ import (
 	"database/sql"
 	"log"
 	"os"
+	"sync"
 	"time"
 )
 
@@ -24,18 +25,23 @@ const (
 
 var (
 	db *sql.DB
+	dbInitOnce sync.Once
 
 	postgresConnStr = "user=postgres dbname=postgres host=localhost sslmode=disable password=" + os.Getenv("PGPASS")
 )
 
+func dbInit() {
+	var e error
+	db, e = sql.Open("postgres", postgresConnStr)
+	if e != nil {
+		log.Fatal(e)
+	}
+	log.Printf("`db` value set\n")
+}
+
 func init() {
 	if db == nil {
-		var e error
-		db, e = sql.Open("postgres", postgresConnStr)
-		if e != nil {
-			log.Fatal(e)
-		}
-		log.Printf("`db` value set\n")
+		dbInitOnce.Do(dbInit)
 	}
 }
 
