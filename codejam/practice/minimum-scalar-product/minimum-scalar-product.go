@@ -23,40 +23,10 @@ func main() {
 		for i := 0; i < nDim; i++ {
 			v2[i] = jam.GetInt()
 		}
-		v1 = quicksort(v1, true)
-		v2 = quicksort(v2, false)
+		v1 = jam.QuicksortInts(v1, true)
+		v2 = jam.QuicksortInts(v2, false)
 		fmt.Printf("Case #%d: %v\n", i+1, scalarProduct(v1, v2))
 	}
-}
-
-func quicksort(nums []int, ascend bool) []int {
-	if len(nums) < 2 {
-		return nums
-	}
-	left, right := split(nums[0], nums[1:], ascend)
-	sorted := append(quicksort(left, ascend), nums[0])
-	return append(sorted, quicksort(right, ascend)...)
-}
-
-func split(head int, rest []int, ascend bool) (left, right []int) {
-	for i := 0; i < len(rest); i++ {
-		if ascend {
-			// Small to big
-			if rest[i] <= head {
-				left = append(left, rest[i])
-			} else {
-				right = append(right, rest[i])
-			}
-		} else {
-			// Big to small
-			if rest[i] >= head {
-				left = append([]int{rest[i]}, left...)
-			} else {
-				right = append([]int{rest[i]}, right...)
-			}
-		}
-	}
-	return
 }
 
 func scalarProduct(v1, v2 []int) (prod int) {
