@@ -45,36 +45,24 @@ func preorder(tree *Node) {
 		return
 	}
 	fmt.Printf("%s ", tree.Value)
-	if tree.Left != nil {
-		preorder(tree.Left)
-	}
-	if tree.Right != nil {
-		preorder(tree.Right)
-	}
+	preorder(tree.Left)
+	preorder(tree.Right)
 }
 
 func inorder(tree *Node) {
 	if tree == nil {
 		return
 	}
-	if tree.Left != nil {
-		inorder(tree.Left)
-	}
+	inorder(tree.Left)
 	fmt.Printf("%s ", tree.Value)
-	if tree.Right != nil {
-		inorder(tree.Right)
-	}
+	inorder(tree.Right)
 }
 
 func postorder(tree *Node) {
 	if tree == nil {
 		return
 	}
-	if tree.Left != nil {
-		postorder(tree.Left)
-	}
-	if tree.Right != nil {
-		postorder(tree.Right)
-	}
+	postorder(tree.Left)
+	postorder(tree.Right)
 	fmt.Printf("%s ", tree.Value)
 }
