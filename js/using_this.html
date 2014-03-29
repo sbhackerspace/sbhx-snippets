@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <title>Use's of the `this` keyword.</title>
+        <style>
+            .pass {
+                color: green;
+            }
+            .fail {
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+
+    <h3>Green is true, red is false.</h3>
+    <br>
+    <div id='results'></div>
+
+    <script>
+    // Testing code.
+    var results = document.getElementById('results');
+    function assert(question, answer) {
+        r = document.createElement('span');
+        r.className = answer ? 'pass' : 'fail';
+        r.textContent = question;
+        results.appendChild(r);
+        results.appendChild(document.createElement('br'));
+    };
+
+    //
+    // Use's of the `this` keyword.
+    //
+
+    // #1: Invocation as a function
+    var return_this = function() {
+        return this;
+    };
+    assert('Invoking return_this() as a function, `this` == window.', return_this() === window);
+
+    // #2: Invocation as a method
+    var obj = {};
+    obj.return_this = return_this;
+
+    assert('Invoking obj.return_this() as a method, `this` == obj.', obj.return_this() === obj);
+
+    // #3: Invocation as a method from a constructor
+    var Obj = function() {
+        this.return_this = function() { return this };
+    };
+
+    var constructor_obj = new Obj();
+    assert('Invoking constructor_obj.return_this() as a method, `this` == constructor_obj.', constructor_obj.return_this() === constructor_obj);
+
+    // #4: Invocation using .call() or .apply()
+    var another_obj = {};
+
+    assert('Invoking return_this.apply(another_obj), `this` == another_obj.', return_this.apply(another_obj) === another_obj);
+
+
+    </script>
+    </body>
+</html>
