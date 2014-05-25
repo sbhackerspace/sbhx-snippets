@@ -1,0 +1,27 @@
+# Steve Phillips / @elimisteve
+# 2014.05.25
+
+# Install cjdns on Ubuntu. Run with
+#
+#   ansible-playbook install_cjdns_ubuntu.yml -e hosts=sbhx1 [-K]
+#
+# where -K is only needed if there is a sudo password on the server
+
+- hosts: "{{ hosts }}"
+
+  tasks:
+  - name: Install dependencies for cjdns
+    sudo: true
+    apt: pkg={{ item }} state=present update_cache=true
+    with_items:
+    - nodejs
+    - git
+    - build-essential
+    - devscripts
+    - debhelper
+
+  - name: Clone cjdns repo and run ./do
+    shell: git clone https://github.com/cjdelisle/cjdns.git && cd cjdns && ./do
+    register: clone_repo_do
+
+  - debug: var=clone_repo_do.stdout_lines
