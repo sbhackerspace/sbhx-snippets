@@ -4,5 +4,7 @@
 
 import sys
 
+print "sys.argv ==", sys.argv
+
 for i in xrange(len(sys.argv)):
     print i, sys.argv[i]
