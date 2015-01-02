@@ -47,6 +47,14 @@ func main() {
 		Circle{1.4},
 	}
 
+	if rect, ok := shapes[0].(Rectangle); ok {
+		log.Printf("%#v is a Rectangle\n", rect)
+	}
+
+	if rect, ok := shapes[0].(Shape); ok {
+		log.Printf("%+v is a Shape\n", rect)
+	}
+
 	for _, s := range shapes {
 		log.Printf("Area of %T:\t%v\n", s, s.Area())
 	}
