@@ -7,23 +7,23 @@ import sys
 
 def main():
     if len(sys.argv) == 1:
-        print "Usage: jgrep <pattern> < input.txt"
+        print "Usage: jgrep <pattern> < input.json"
         return
 
-    data = json.loads(sys.stdin.read())
-    if type(data) is dict:
-        data = [data]
+    json_array = json.loads(sys.stdin.read())
+    if type(json_array) is dict:
+        json_array = [json_array]
 
     pattern = sys.argv[1].lower()
 
-    for obj in data:
+    for obj in json_array:
         for k in obj:
             if pattern in k.lower() or in_or_equal(pattern, obj[k]):
                 print "{}: {}".format(k, json.dumps(obj[k]))
 
 
+collection_types = (list, tuple, set)
 def is_collection(obj):
-    collection_types = (list, tuple, set)
     return any([ isinstance(obj, typ) for typ in collection_types ])
 
 def in_or_equal(obj, container):
