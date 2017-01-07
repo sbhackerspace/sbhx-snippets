@@ -4,6 +4,7 @@
 package main
 
 import (
+	"bufio"
 	"encoding/base64"
 	"io"
 	"os"
@@ -11,11 +12,12 @@ import (
 
 func main() {
 	encoder := base64.NewEncoder(base64.StdEncoding, os.Stdout)
+	r := bufio.NewReader(os.Stdin)
 
-	buf := make([]byte, 0, 1e7)
+	buf := make([]byte, 1e7, 1e7)
 
 	for {
-		n, err := os.Stdin.Read(buf)
+		n, err := r.Read(buf)
 		if err == io.EOF {
 			break
 		}
