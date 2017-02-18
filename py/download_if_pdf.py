@@ -1,3 +1,4 @@
+import contextlib
 import os
 import sys
 import urllib
@@ -14,10 +15,12 @@ if not filename.endswith('.pdf'):
 
 pdf = 'application/pdf'
 
-resp = urllib.urlopen(url)
+with contextlib.closing(urllib.urlopen(url)) as resp:
+    if resp.headers.dict['content-type'] != pdf:
+        os.exit(0)
 
-if resp.headers.dict['content-type'] == pdf:
-    local_file = open(filename, 'w')
-    local_file.write(resp.read())
-    local_file.close()
-    resp.close()
+    with open(filename, 'w') as local_file:
+        buf = resp.read(10**6)
+        while buf:
+            local_file.write(buf)
+            buf = resp.read(10**6)
