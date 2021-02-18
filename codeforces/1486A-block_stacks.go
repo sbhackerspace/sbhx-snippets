@@ -28,15 +28,31 @@ func main() {
 }
 
 func good(nums []int64) bool {
+	// fmt.Printf("\n")
+	// fmt.Printf("stack == %#v\n", nums)
 	length := int64(len(nums))
 	if length == 1 {
 		return true
 	}
-	total := sum(nums)
-	if total < (length*(length-1))/2 {
+	if eqNotEnough(nums) {
 		return false
 	}
 	return true
+}
+
+func eqNotEnough(nums []int64) bool {
+	cumulative := nums[0]
+	for i := int64(1); i < int64(len(nums)); i++ {
+		cumulative += nums[i]
+		triangle := (i * (i + 1)) / 2
+		// fmt.Printf("cumulative == %v\n", cumulative)
+		// fmt.Printf("triangle == %v\n", triangle)
+		if cumulative < triangle {
+			// fmt.Printf("Too small\n")
+			return true
+		}
+	}
+	return false
 }
 
 func Run(n int64) int64 {
