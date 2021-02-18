@@ -32,14 +32,8 @@ func good(nums []int64) bool {
 	if length == 1 {
 		return true
 	}
-	if length == 2 && ((nums[0] == 0 && nums[1] != 0) || (nums[1] == 0 && nums[0] != 0)) {
-		return true
-	}
 	total := sum(nums)
-	if length > total {
-		return false
-	}
-	if total <= (length*(length-1))/2 {
+	if total < (length*(length-1))/2 {
 		return false
 	}
 	return true
